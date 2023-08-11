@@ -8,13 +8,13 @@
 </p>
 
 
-## Please Execute the following commands to ba able to run the project
+## Please Execute the following commands to be able to run the project
 - **composer install**
 - **create the db and configure it in the env file**
 - **php artisan passport:install**
 - **php artisan migrate**
 - **php artisan passport:client --password**
-- **append the created client cred to the .env file like:**
+- **append the created client cred to the .env file, something similar to:-**
 - PASSPORT_GRANT_PASSWORD_CLIENT_ID=3
 - PASSPORT_GRANT_PASSWORD_CLIENT_SECRET=h9yjUVDIfKoKMmJVKmMSopoSUCfj4bFayUgvU7WI
 - **php artisan serve**

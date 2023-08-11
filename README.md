@@ -11,8 +11,8 @@
 ## Please Execute the following commands to be able to run the project
 - **composer install**
 - **create the db and configure it in the env file**
-- **php artisan passport:install**
 - **php artisan migrate**
+- **php artisan passport:install**
 - **php artisan passport:client --password**
 - **append the created client cred to the .env file, something similar to:-**
 - PASSPORT_GRANT_PASSWORD_CLIENT_ID=3

@@ -1,0 +1,55 @@
+<?php
+
+namespace App\Http\Controllers;
+
+use App\Http\Requests\DummyCapsClassName\DummyCreateRequest;
+use App\Http\Requests\DummyCapsClassName\DummyDetailsRequest;
+use App\Http\Requests\DummyCapsClassName\DummyUpdateRequest;
+use App\Http\Requests\DummyCapsClassName\DummyDeleteRequest;
+use App\Services\DummyServ;
+
+class DummyClass extends Controller
+{
+     public function __construct(DummyServ $DummyService)
+        {
+            $this->DummyService = $DummyService;
+        }
+
+        public function list()
+        {
+            return view('admin/DummyClassName.index', ['items' => $this->DummyService->list()]);
+        }
+
+        public function create()
+        {
+            return view('admin/DummyClassName.create');
+        }
+
+        public function store(DummyCreateRequest $request)
+        {
+            $this->DummyService->store($request->validated());
+            return redirect(route('DummyClassName.list'))->with('success', 'Operation was successful!');
+        }
+
+        public function details(DummyDetailsRequest $request)
+        {
+            return view('admin/DummyClassName.details', ['item' => $this->DummyService->getOneBy($request->validated())]);
+        }
+
+        public function edit(DummyDetailsRequest $request)
+        {
+            return view('admin/DummyClassName.edit', ['item' => $this->DummyService->getOneBy($request->validated())]);
+        }
+
+        public function update(DummyUpdateRequest $request)
+        {
+            $this->DummyService->update($request->validated());
+            return redirect(route('DummyClassName.list'))->with('success', 'Operation was successful!');
+        }
+
+        public function delete(DummyDeleteRequest $request)
+        {
+            $this->DummyService->delete($request->validated());
+           return redirect(route('DummyClassName.list'))->with('success', 'Operation was successful!');
+        }
+}

@@ -1,0 +1,11 @@
+
+    #### DummyRoute Routes
+Route::prefix('admin/DummyRoute')->middleware('auth:admin')->group(function (){
+    Route::get('list', [\App\Http\Controllers\DummyController::class, 'list'])->name('DummyRoute.list');
+    Route::get('create', [\App\Http\Controllers\DummyController::class, 'create'])->name('DummyRoute.create');
+    Route::post('store', [\App\Http\Controllers\DummyController::class, 'store'])->name('DummyRoute.store');
+    Route::get('details', [\App\Http\Controllers\DummyController::class, 'details'])->name('DummyRoute.details');
+    Route::get('edit', [\App\Http\Controllers\DummyController::class, 'edit'])->name('DummyRoute.edit');
+    Route::post('update', [\App\Http\Controllers\DummyController::class, 'update'])->name('DummyRoute.update');
+    Route::get('delete', [\App\Http\Controllers\DummyController::class, 'delete'])->name('DummyRoute.delete');
+});

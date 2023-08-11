@@ -1,0 +1,73 @@
+<?php
+
+namespace App\Services;
+
+use App\Exceptions\CustomQueryException;
+use App\Repositories\DummyRepository;
+
+class DummyClassName
+{
+    /**
+     * @var DummyRepository
+     */
+    private $DummyRepo;
+
+    /**
+     * @var DummyRepository
+     */
+    public function __construct(DummyRepository $repository)
+    {
+        $this->DummyRepo = $repository;
+    }
+
+    /**
+     * @return mixed
+     * @throws CustomQueryException
+     */
+    public function list()
+    {
+        return $this->DummyRepo->findAll([]);
+    }
+
+    /**
+     * @param $data
+     * @return mixed
+     * @throws CustomQueryException
+     */
+    public function store($data)
+    {
+        return $this->DummyRepo->create($data);
+    }
+
+    /**
+     * @param $data
+     * @return mixed
+     * @throws CustomQueryException
+     */
+    public function getOneBy($data)
+    {
+        return $this->DummyRepo->findOneBy($data);
+    }
+
+    /**
+     * @param $data
+     * @return mixed
+     * @throws CustomQueryException
+     */
+    public function update($data)
+    {
+        $item = $this->DummyRepo->findOneBy(['id'=> $data['id']]);
+        $this->DummyRepo->update($item, $data);
+        return $item;
+    }
+
+    /**
+     * @param $id
+     * @return mixed
+     * @throws CustomQueryException
+     */
+    public function delete($id)
+    {
+        return $this->DummyRepo->delete($id);
+    }
+}

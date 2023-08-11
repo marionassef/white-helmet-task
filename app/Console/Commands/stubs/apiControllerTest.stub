@@ -1,0 +1,45 @@
+<?php
+
+namespace Tests\Feature\Http\Controllers\API;
+
+use Tests\TestCase;
+
+class DummyClass extends TestCase
+{
+
+    public function testList()
+    {
+        $this->get('api/v1/listRoute', [
+
+        ])->assertStatus(200);
+
+    }
+
+    public function testStore()
+    {
+        $this->post('api/v1/storeRoute', [
+
+        ])->assertStatus(200);
+    }
+
+    public function testDetails()
+    {
+        $this->get('api/v1/detailsRoute', [
+
+        ])->assertStatus(200);
+    }
+
+    public function testUpdate()
+    {
+        $this->post('api/v1/updateRoute', [
+
+        ])->assertStatus(200);
+    }
+
+    public function testDelete()
+        {
+            $this->post('api/v1/deleteRoute', [
+
+            ])->assertStatus(200);
+        }
+}

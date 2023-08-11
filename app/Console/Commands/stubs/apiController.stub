@@ -1,0 +1,81 @@
+<?php
+
+namespace App\Http\Controllers\API;
+
+use Illuminate\Http\Request;
+use App\Http\Requests\DummyCapsClassName\CreateDummyRequest;
+use App\Http\Requests\DummyCapsClassName\DetailsDummyRequest;
+use App\Http\Requests\DummyCapsClassName\UpdateDummyRequest;
+use App\Http\Requests\DummyCapsClassName\DeleteDummyRequest;
+use App\Services\DummyServ;
+use App\Helpers\CustomResponse;
+use App\Http\Controllers\Controller;
+use App\Exceptions\CustomQueryException;
+use Illuminate\Http\JsonResponse;
+
+/**
+ * Class DummyClass
+ * @package App\Http\Controllers\API
+ */
+class DummyClass extends Controller
+{
+    /**
+     * @var DummyServ
+     */
+    private $DummyService;
+
+    public function __construct(DummyServ $DummyService)
+    {
+        $this->DummyService = $DummyService;
+    }
+
+    /**
+     * @return JsonResponse
+     * @throws CustomQueryException
+     */
+    public function list(): JsonResponse
+    {
+        return CustomResponse::successResponse(__('success'), $this->DummyService->list());
+    }
+
+    /**
+     * @param DummyCreateRequest $request
+     * @return JsonResponse
+     * @throws CustomQueryException
+     */
+    public function store(DummyCreateRequest $request): JsonResponse
+    {
+       return CustomResponse::successResponse(__('success'), $this->DummyService->store($request->validated()));
+    }
+
+    /**
+     * @param DummyDetailsRequest $request
+     * @return JsonResponse
+     * @throws CustomQueryException
+     */
+    public function details(DummyDetailsRequest $request): JsonResponse
+    {
+        return CustomResponse::successResponse(__('success'), $this->DummyService->getOneBy($request->validated()['id']));
+    }
+
+    /**
+     * @param DummyUpdateRequest $request
+     * @return JsonResponse
+     * @throws CustomQueryException
+     */
+    public function update(DummyUpdateRequest $request): JsonResponse
+    {
+        return CustomResponse::successResponse(__('success'), $this->DummyService->update($request->validated()));
+    }
+
+    /**
+     * @param DummyDeleteRequest $request
+     * @return JsonResponse
+     * @throws CustomQueryException
+     */
+    public function delete(DummyDeleteRequest $request): JsonResponse
+    {
+        $this->DummyService->delete($request->validated());
+        return CustomResponse::successResponse(__('success'));
+    }
+}
